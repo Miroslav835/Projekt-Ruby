@@ -1,0 +1,26 @@
+<%= form_with model: screening do |form| %>
+  <% if form.object.errors.any? %>
+    <p class="error">
+      <%= form.object.errors.full_messages.first %>
+    </p>
+  <% end %>
+
+  <div>
+    <%= form.label :movie_id, "Movie" %>
+    <%= form.collection_select :movie_id, Movie.all, :id, :name %>
+  </div>
+
+  <div>
+    <%= form.label :starts_at, "Start" %>
+    <%= form.datetime_local_field :starts_at %>
+  </div>
+
+  <div>
+    <%= form.label :screen_room_id, "Screen room" %>
+    <%= form.collection_select :screen_room_id, ScreenRoom.all, :id, :room_number %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

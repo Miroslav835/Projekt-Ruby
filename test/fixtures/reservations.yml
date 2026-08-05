@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  screening: one
+  email_address: MyString
+  number_of_seats: 1
+
+two:
+  screening: two
+  email_address: MyString
+  number_of_seats: 1

@@ -1,0 +1,571 @@
+/*
+ *= require_tree .
+ *= require_self
+ */
+
+/* ---------- ZÁKLADNÍ NASTAVENÍ ---------- */
+
+:root {
+    --background-color: #f4f5f7;
+    --surface-color: #ffffff;
+    --surface-secondary-color: #f9fafb;
+
+    --text-color: #1f2937;
+    --muted-text-color: #6b7280;
+
+    --border-color: #d8dce2;
+
+    --primary-color: #2563eb;
+    --primary-hover-color: #1d4ed8;
+
+    --secondary-color: #6b7280;
+    --secondary-hover-color: #4b5563;
+
+    --danger-color: #dc2626;
+    --danger-hover-color: #b91c1c;
+
+    --success-background: #dcfce7;
+    --success-border: #86c99a;
+    --success-text: #166534;
+
+    --error-background: #fee2e2;
+    --error-border: #e99a9a;
+    --error-text: #991b1b;
+
+    --border-radius: 8px;
+    --box-shadow: 0 2px 6px rgb(0 0 0 / 6%);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+main {
+    width: min(1100px, calc(100% - 32px));
+    margin: 32px auto;
+}
+
+/* ---------- NADPISY A TEXT ---------- */
+
+h1,
+h2,
+h3 {
+    color: var(--text-color);
+    line-height: 1.2;
+}
+
+h1 {
+    margin: 0 0 24px;
+    font-size: 34px;
+}
+
+h2 {
+    margin: 0 0 18px;
+    font-size: 26px;
+}
+
+h3 {
+    margin: 0 0 14px;
+    font-size: 20px;
+}
+
+p {
+    margin-top: 0;
+}
+
+strong {
+    font-weight: 700;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- ROZLOŽENÍ STRÁNKY ---------- */
+
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.page-header h1 {
+    margin-bottom: 0;
+}
+
+.navigation {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 28px;
+}
+
+.section {
+    margin-bottom: 36px;
+}
+
+.section:last-child {
+    margin-bottom: 0;
+}
+
+.card-list {
+    display: grid;
+    gap: 18px;
+}
+
+.detail-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+    gap: 24px;
+    align-items: start;
+}
+
+/* ---------- KARTY ---------- */
+
+.card,
+.movie,
+.screening,
+.reservation,
+.screen-room {
+    padding: 22px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: var(--surface-color);
+    box-shadow: var(--box-shadow);
+}
+
+.card-title {
+    margin-bottom: 16px;
+}
+
+.card p,
+.movie p,
+.screening p,
+.reservation p,
+.screen-room p {
+    margin: 0 0 12px;
+}
+
+.card p:last-child,
+.movie p:last-child,
+.screening p:last-child,
+.reservation p:last-child,
+.screen-room p:last-child {
+    margin-bottom: 0;
+}
+
+.card-meta {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.card-meta p {
+    margin: 0;
+}
+
+/* ---------- SEZNAM FILMŮ ---------- */
+
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+}
+
+.movie-link-card {
+    display: block;
+    height: 100%;
+    padding: 22px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: var(--surface-color);
+    box-shadow: var(--box-shadow);
+    color: var(--text-color);
+    transition:
+            transform 150ms ease,
+            border-color 150ms ease,
+            box-shadow 150ms ease;
+}
+
+.movie-link-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary-color);
+    box-shadow: 0 5px 14px rgb(0 0 0 / 10%);
+    text-decoration: none;
+}
+
+.movie-link-card h2 {
+    margin-bottom: 14px;
+    color: var(--primary-color);
+}
+
+.movie-link-card p {
+    margin: 0 0 8px;
+}
+
+.movie-link-card p:last-child {
+    margin-bottom: 0;
+}
+
+/* ---------- PROMÍTÁNÍ ---------- */
+
+.screenings {
+    margin-top: 22px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.screening-list {
+    display: grid;
+    gap: 12px;
+}
+
+.screening {
+    background-color: var(--surface-secondary-color);
+    box-shadow: none;
+}
+
+.screening-link {
+    display: block;
+    padding: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 7px;
+    background-color: var(--surface-secondary-color);
+    color: var(--text-color);
+    transition:
+            border-color 150ms ease,
+            background-color 150ms ease;
+}
+
+.screening-link:hover {
+    border-color: var(--primary-color);
+    background-color: var(--surface-color);
+    text-decoration: none;
+}
+
+.screening-link p {
+    margin: 0 0 6px;
+}
+
+.screening-link p:last-child {
+    margin-bottom: 0;
+}
+
+/* ---------- REZERVACE A SÁLY ---------- */
+
+#movies,
+#screenings,
+#reservations,
+#screen-rooms {
+    display: grid;
+    gap: 18px;
+}
+
+.reservation,
+.screen-room {
+    background-color: var(--surface-color);
+}
+
+/* ---------- TLAČÍTKA ---------- */
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+}
+
+.button,
+input[type="submit"],
+button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 9px 14px;
+    border: 0;
+    border-radius: 6px;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    font: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition:
+            background-color 150ms ease,
+            box-shadow 150ms ease;
+}
+
+.button:hover,
+input[type="submit"]:hover,
+button:hover {
+    background-color: var(--primary-hover-color);
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.button:focus-visible,
+input[type="submit"]:focus-visible,
+button:focus-visible {
+    outline: 3px solid rgb(37 99 235 / 25%);
+    outline-offset: 2px;
+}
+
+.button-secondary {
+    background-color: var(--secondary-color);
+}
+
+.button-secondary:hover {
+    background-color: var(--secondary-hover-color);
+}
+
+.button-danger,
+button.button-danger,
+input[type="submit"].button-danger {
+    background-color: var(--danger-color);
+}
+
+.button-danger:hover,
+button.button-danger:hover,
+input[type="submit"].button-danger:hover {
+    background-color: var(--danger-hover-color);
+}
+
+form.button_to {
+    display: inline-flex;
+    margin: 0;
+}
+
+/* Pokud má button_to vygenerovaný vnitřní div */
+form.button_to div {
+    margin: 0;
+}
+
+/* ---------- FORMULÁŘE ---------- */
+
+form:not(.button_to) {
+    width: 100%;
+    max-width: 650px;
+    padding: 24px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: var(--surface-color);
+    box-shadow: var(--box-shadow);
+}
+
+form:not(.button_to) > div {
+    margin-bottom: 18px;
+}
+
+form:not(.button_to) > div:last-child {
+    margin-bottom: 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 10px 11px;
+    border: 1px solid #c7cbd1;
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: var(--text-color);
+    font: inherit;
+}
+
+input:hover,
+textarea:hover,
+select:hover {
+    border-color: #9ca3af;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--primary-color);
+    outline: 3px solid rgb(37 99 235 / 15%);
+}
+
+input:disabled,
+textarea:disabled,
+select:disabled {
+    background-color: #e5e7eb;
+    color: var(--muted-text-color);
+    cursor: not-allowed;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+select {
+    cursor: pointer;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    width: auto;
+}
+
+input[type="submit"] {
+    width: auto;
+}
+
+/* ---------- FLASH A CHYBOVÉ ZPRÁVY ---------- */
+
+.notice,
+.alert,
+.error {
+    margin-bottom: 20px;
+    padding: 12px 16px;
+    border-radius: 6px;
+}
+
+.notice {
+    border: 1px solid var(--success-border);
+    background-color: var(--success-background);
+    color: var(--success-text);
+}
+
+.alert,
+.error {
+    border: 1px solid var(--error-border);
+    background-color: var(--error-background);
+    color: var(--error-text);
+}
+
+.error ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.error li + li {
+    margin-top: 4px;
+}
+
+/* Rails může obalit nevalidní input tímto elementem */
+.field_with_errors {
+    display: contents;
+}
+
+.field_with_errors input,
+.field_with_errors textarea,
+.field_with_errors select {
+    border-color: var(--danger-color);
+}
+
+/* ---------- DOPLŇKOVÉ PRVKY ---------- */
+
+.empty-message {
+    color: var(--muted-text-color);
+    font-style: italic;
+}
+
+.muted-text {
+    color: var(--muted-text-color);
+}
+
+.movie-info {
+    margin-bottom: 20px;
+}
+
+.inline-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+}
+
+/* ---------- RESPONSIVNÍ DESIGN ---------- */
+
+@media (max-width: 760px) {
+    main {
+        width: min(100% - 20px, 1100px);
+        margin: 20px auto;
+    }
+
+    h1 {
+        font-size: 29px;
+    }
+
+    h2 {
+        font-size: 23px;
+    }
+
+    .page-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .detail-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .movie-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .navigation,
+    .actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .button,
+    input[type="submit"],
+    button,
+    form.button_to {
+        width: 100%;
+    }
+
+    form.button_to input,
+    form.button_to button {
+        width: 100%;
+    }
+
+    form:not(.button_to) {
+        max-width: none;
+        padding: 18px;
+    }
+
+    .card,
+    .movie,
+    .screening,
+    .reservation,
+    .screen-room,
+    .movie-link-card {
+        padding: 18px;
+    }
+}

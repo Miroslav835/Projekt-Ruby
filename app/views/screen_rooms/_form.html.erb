@@ -1,0 +1,23 @@
+<%= form_with model: screen_room do |form| %>
+  <% if form.object.errors.any? %>
+    <p class="error">
+      <%= form.object.errors.full_messages.first %>
+    </p>
+  <% end %>
+
+  <div>
+    <%= form.label :room_number, "Room number" %>
+    <%= form.email_field :room_number, required: true %>
+  </div>
+
+  <div>
+    <%= form.label :number_of_seats, "Number of seats" %>
+    <%= form.number_field :number_of_seats,
+                          min: 1,
+                          required: true %>
+  </div>
+
+  <div>
+    <%= form.submit "Reserve" %>
+  </div>
+<% end %>

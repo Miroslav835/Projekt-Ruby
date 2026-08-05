@@ -1,0 +1,66 @@
+<nav class="navigation">
+  <%= link_to "Back",
+              movies_path,
+              class: "button button-secondary" %>
+</nav>
+
+<div class="detail-layout">
+  <section class="card">
+    <h1 class="card-title"><%= @movie.name %></h1>
+
+    <div class="card-meta">
+      <p>
+        <strong>Genre:</strong>
+        <%= @movie.genre %>
+      </p>
+
+      <p>
+        <strong>Duration:</strong>
+        <%= @movie.duration %> minutes
+      </p>
+    </div>
+
+    <h2>Description</h2>
+
+    <% if @movie.description.present? %>
+      <p><%= @movie.description %></p>
+    <% else %>
+      <p class="empty-message">Movie description is not available.</p>
+    <% end %>
+  </section>
+
+  <section class="card">
+    <h2>Screening</h2>
+
+    <% if @movie.screenings.any? %>
+      <div class="screening-list">
+        <% @movie.screenings.order(:starts_at).each do |screening| %>
+          <%= link_to screening_path(screening),
+                      class: "screening-link" do %>
+            <p>
+              <strong>
+                <%= screening.starts_at.strftime("%d. %m. %Y %H:%M") %>
+              </strong>
+            </p>
+
+            <p>
+              Sál:
+              <%= screening.screen_room.room_number %>
+            </p>
+
+            <p>
+              Volná místa:
+              <%= screening.available_seats %>
+              /
+              <%= screening.screen_room.number_of_seats %>
+            </p>
+          <% end %>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="empty-message">
+        Movie doesnt have any screenings yet.
+      </p>
+    <% end %>
+  </section>
+</div>

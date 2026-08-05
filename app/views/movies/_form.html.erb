@@ -1,0 +1,39 @@
+<%= form_with model: movie do |form| %>
+  <% if form.object.errors.any? %>
+    <p class="error"><%= form.object.errors.full_messages.first %></p>
+  <% end %>
+
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div>
+    <%= form.label :genre, style: "display: block" %>
+    <%= form.text_field :genre %>
+  </div>
+
+  <div>
+    <%= form.label :duration, style: "display: block" %>
+    <%= form.text_field :duration %>
+  </div>
+
+  <div>
+    <%= form.label :start_date, "Available from" %>
+    <%= form.date_field :start_date %>
+  </div>
+
+  <div>
+    <%= form.label :end_date, "Available until" %>
+    <%= form.date_field :end_date %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

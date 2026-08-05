@@ -1,0 +1,37 @@
+<%
+  form_model =
+    if reservation.persisted?
+      reservation
+    else
+      [reservation.screening, reservation]
+    end
+%>
+
+<%= form_with model: form_model do |form| %>
+  <% if form.object.errors.any? %>
+    <ul class="error">
+      <% form.object.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div>
+    <%= form.label :email_address, "Email" %>
+    <%= form.email_field :email_address, required: true %>
+  </div>
+
+  <div>
+    <%= form.label :number_of_seats, "Number of seats" %>
+
+    <%= form.number_field :number_of_seats,
+                          min: 1,
+                          max: reservation.screening.available_seats +
+                            (reservation.persisted? ? reservation.number_of_seats : 0),
+                          required: true %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

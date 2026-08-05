@@ -1,0 +1,33 @@
+<div class="page-header">
+  <h1>Movies</h1>
+
+  <% if authenticated? %>
+    <%= link_to "Administration", admin_path, class: "button button-secondary" %>
+  <% end %>
+</div>
+
+<div class="movie-grid">
+  <% @movie.each do |movie| %>
+    <%= link_to movie_path(movie), class: "movie-link-card" do %>
+      <h2><%= movie.name %></h2>
+
+      <p>
+        <strong>Genre:</strong>
+        <%= movie.genre %>
+      </p>
+
+      <p>
+        <strong>Duration:</strong>
+        <%= movie.duration %> minut
+      </p>
+
+      <p>
+        <strong>Number of screening:</strong>
+        <%= movie.screenings.size %>
+      </p>
+
+      <p><strong>In cinemas:</strong><%= movie.start_date %> – <%= movie.end_date %></p>
+
+    <% end %>
+  <% end %>
+</div>
