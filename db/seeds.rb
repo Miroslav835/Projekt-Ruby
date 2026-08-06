@@ -3,6 +3,12 @@ Screening.destroy_all
 Movie.destroy_all
 ScreenRoom.destroy_all
 
+admin = User.find_or_initialize_by(email_address: "admin@example.com")
+
+admin.password = "Admin123!"
+
+admin.save!
+
 room_1 = ScreenRoom.create!(
   room_number: 1,
   number_of_seats: 75
